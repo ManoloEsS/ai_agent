@@ -8,11 +8,12 @@ from google import genai
 from google.genai import types
 from websockets import Response
 
-from config import system_prompt
+from config import MAX_ITERS, system_prompt
 from functions.call_function import available_functions, call_function
 
 
 def main():
+    iteration_loop = 0
     load_dotenv()
 
     verbose = "--verbose" in sys.argv
@@ -34,7 +35,20 @@ def main():
         types.Content(role="user", parts=[types.Part(text=user_prompt)]),
     ]
 
-    generate_content(client, messages, verbose)
+    while True:
+        iteration_loop += 1
+        if iteration_loop > MAX_ITERS:
+            print(f"Max iterations ({MAX_ITERS}) reached")
+            sys.exit(1)
+
+        try:
+            final_response = generate_content(client, messages, verbose)
+            if final_response:
+                print("Final response:")
+                print(final_response)
+                break
+        except Exception as e:
+            print(f"Error in generate_content: {e}")
 
 
 def generate_content(client, messages, verbose):
@@ -48,9 +62,13 @@ def generate_content(client, messages, verbose):
     if verbose:
         print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
+
+    if response.candidates:
+        for item in response.candidates:
+            messages.append(item.content)
+
     if not response.function_calls:
-        print("Response:")
-        print(response.text)
+        return response.text
 
     function_responses = []
     for function_call_part in response.function_calls:
@@ -66,6 +84,8 @@ def generate_content(client, messages, verbose):
 
     if not function_responses:
         raise Exception("no function responses generated, exiting.")
+
+    messages.append(types.Content(role="tool", parts=function_responses))
 
 
 if __name__ == "__main__":

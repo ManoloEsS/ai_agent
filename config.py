@@ -12,3 +12,5 @@ All paths you provide should be relative to the working directory. You do not ne
 """
 
 MAX_CHARS = 10000
+WORKING_DIR = "./calculator"
+MAX_ITERS = 20
