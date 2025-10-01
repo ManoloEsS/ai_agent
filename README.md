@@ -5,66 +5,71 @@ An AI-powered coding agent that uses Google's Gemini API to interact with a calc
 ## Quick Start
 
 ### Prerequisites
-- [uv](https://docs.astral.sh/uv/) (recommended) or Python 3.13+
+- Python 3.11+
+- [pipx](https://pipx.pypa.io/) (recommended for global installation)
 - Google Gemini API key
 
 ### Installation
 
-#### Using uv (recommended)
+#### Using pipx (recommended)
 
-1. Install uv if you haven't already:
+1. Install pipx if you haven't already:
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
 ```
 
-2. Install dependencies:
+2. Install the AI agent:
 ```bash
-uv sync
+pipx install git+https://github.com/ManoloEsS/ai_agent.git
 ```
 
 3. Set up your API key:
 ```bash
 export GEMINI_API_KEY="your-api-key-here"
 ```
-Or create a `.env` file:
+Or create a `.env` file in your working directory:
 ```
 GEMINI_API_KEY=your-api-key-here
 ```
 
-#### Alternative: Using pip
+#### Alternative: Using pip (local development)
 
-If you prefer to use pip:
+If you prefer to use pip for local development:
 
-1. Install dependencies:
+1. Clone the repository:
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/ManoloEsS/ai_agent.git
+cd ai_agent
 ```
 
-2. Set up your API key as shown above.
+2. Install dependencies:
+```bash
+pip install -e .
+```
+
+3. Set up your API key as shown above.
 
 ### Usage
 
 Run the AI agent with natural language commands:
 
 ```bash
-# Using uv (recommended)
-uv run python main.py "list files in the calculator directory"
-
-# Or if using pip
-python3 main.py "list files in the calculator directory"
+# After installing with pipx, you can run from anywhere
+ai-agent "list files in the calculator directory"
 ```
 
 More examples:
 
 ```bash
 # Run the calculator
-uv run python main.py "run the calculator with expression 3 + 5"
+ai-agent "run the calculator with expression 3 + 5"
 
 # Read a file
-uv run python main.py "read the calculator.py file"
+ai-agent "read the calculator.py file"
 
 # Enable verbose mode for detailed logging
-uv run python main.py --verbose "explain how the calculator works"
+ai-agent --verbose "explain how the calculator works"
 ```
 
 ### Direct Calculator Usage
@@ -73,11 +78,6 @@ You can also run the calculator directly:
 
 ```bash
 cd calculator
-# Using uv
-uv run python main.py "3 + 5"
-uv run python tests.py
-
-# Or using python directly
 python3 main.py "3 + 5"
 python3 tests.py
 ```
@@ -139,22 +139,22 @@ The agent can perform multiple operations in sequence to accomplish complex task
 
 ### Example 1: Exploring the Project
 ```bash
-uv run python main.py "what files are in the calculator directory?"
+ai-agent "what files are in the calculator directory?"
 ```
 
 ### Example 2: Running Code
 ```bash
-uv run python main.py "run the calculator tests"
+ai-agent "run the calculator tests"
 ```
 
 ### Example 3: Reading and Explaining Code
 ```bash
-uv run python main.py "read calculator.py and explain how it works"
+ai-agent "read calculator.py and explain how it works"
 ```
 
 ### Example 4: Modifying Code
 ```bash
-uv run python main.py "add support for exponentiation to the calculator"
+ai-agent "add support for exponentiation to the calculator"
 ```
 
 ## Security
@@ -171,10 +171,6 @@ The agent includes multiple security layers:
 Run the calculator tests:
 ```bash
 cd calculator
-# Using uv
-uv run python tests.py
-
-# Or using python directly
 python3 tests.py
 ```
 
