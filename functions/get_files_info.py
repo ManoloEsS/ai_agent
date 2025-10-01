@@ -3,7 +3,21 @@ import os
 from google.genai import types
 
 
-def get_files_info(working_directory, directory=None):
+from typing import Optional
+
+
+def get_files_info(working_directory: str, directory: Optional[str] = None) -> str:
+    """List files and directories with their sizes in the specified directory.
+    
+    Args:
+        working_directory: The base working directory path.
+        directory: Optional relative path to a subdirectory. If not provided,
+            lists files in the working directory itself.
+    
+    Returns:
+        A string containing file information (name, size, is_dir status)
+        for each item in the directory, or an error message.
+    """
     absolute_working = os.path.abspath(working_directory)
     target_dir = absolute_working
 

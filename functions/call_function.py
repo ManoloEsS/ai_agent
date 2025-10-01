@@ -1,3 +1,5 @@
+from typing import Any
+
 from google.genai import types
 
 from config import WORKING_DIR
@@ -16,7 +18,17 @@ available_functions = types.Tool(
 )
 
 
-def call_function(function_call_part, verbose=False):
+def call_function(function_call_part: Any, verbose: bool = False) -> types.Content:
+    """Execute a function call and return its result wrapped in a Content object.
+    
+    Args:
+        function_call_part: The function call part from the model's response,
+            containing the function name and arguments.
+        verbose: If True, prints detailed information about the function call.
+    
+    Returns:
+        A Content object containing the function result or error message.
+    """
     functions = {
         "get_files_info": get_files_info,
         "get_file_content": get_file_content,
