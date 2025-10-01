@@ -393,7 +393,7 @@ The project consists of two main components:
 
 ### Complete Workflow Example
 
-**User Command**: `python3 main.py "run calculator with expression 3 + 5"`
+**User Command**: `ai-agent "run calculator with expression 3 + 5"`
 
 1. **main()**: 
    - Loads API key
@@ -519,14 +519,14 @@ The `--verbose` flag enables detailed debugging:
 
 ### Basic Usage
 ```bash
-python3 main.py "list files in the calculator directory"
-python3 main.py "run the calculator with expression 10 + 5"
-python3 main.py "read the calculator.py file"
+ai-agent "list files in the calculator directory"
+ai-agent "run the calculator with expression 10 + 5"
+ai-agent "read the calculator.py file"
 ```
 
 ### Verbose Mode
 ```bash
-python3 main.py --verbose "explain how the calculator works"
+ai-agent --verbose "explain how the calculator works"
 ```
 
 ### Direct Calculator Usage
