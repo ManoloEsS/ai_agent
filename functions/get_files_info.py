@@ -8,12 +8,12 @@ from typing import Optional
 
 def get_files_info(working_directory: str, directory: Optional[str] = None) -> str:
     """List files and directories with their sizes in the specified directory.
-    
+
     Args:
         working_directory: The base working directory path.
         directory: Optional relative path to a subdirectory. If not provided,
             lists files in the working directory itself.
-    
+
     Returns:
         A string containing file information (name, size, is_dir status)
         for each item in the directory, or an error message.
@@ -48,7 +48,8 @@ def get_files_info(working_directory: str, directory: Optional[str] = None) -> s
 schema_get_files_info = types.FunctionDeclaration(
     name="get_files_info",
     description="""Lists files in the specified directory 
-            along with their sizes, constrained to the working directory.""",
+            along with their sizes and wether they are a directory,
+            constrained to the working directory.""",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={

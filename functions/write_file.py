@@ -5,12 +5,12 @@ from google.genai import types
 
 def write_file(working_directory: str, file_path: str, content: str) -> str:
     """Write content to a file, creating it and parent directories if needed.
-    
+
     Args:
         working_directory: The base working directory path.
         file_path: Relative path to the target file to write.
         content: The content to write to the file.
-    
+
     Returns:
         A success message with the number of characters written,
         or an error message if the write operation fails.
@@ -41,7 +41,7 @@ def write_file(working_directory: str, file_path: str, content: str) -> str:
 schema_write_file = types.FunctionDeclaration(
     name="write_file",
     description="""Checks if target file exists and either writes on it 
-        or creates it.""",
+        or creates it with all it's parent directories.""",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
