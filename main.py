@@ -2,6 +2,7 @@
 
 import os
 import sys
+from typing import List, Optional
 
 from dotenv import load_dotenv
 from google import genai
@@ -12,7 +13,13 @@ from config import MAX_ITERS, system_prompt
 from functions.call_function import available_functions, call_function
 
 
-def main():
+def main() -> None:
+    """Main entry point for the AI coding agent.
+    
+    Processes command-line arguments, initializes the Gemini API client,
+    and iteratively generates content based on user prompts.
+    Exits when a final response is generated or max iterations are reached.
+    """
     iteration_loop = 0
     load_dotenv()
 
@@ -51,7 +58,22 @@ def main():
             print(f"Error in generate_content: {e}")
 
 
-def generate_content(client, messages, verbose):
+def generate_content(
+    client: genai.Client, messages: List[types.Content], verbose: bool
+) -> Optional[str]:
+    """Generate content using the Gemini API with function calling support.
+    
+    Args:
+        client: The Gemini API client instance.
+        messages: List of conversation messages including user prompts and tool responses.
+        verbose: If True, prints detailed information about token usage and function calls.
+    
+    Returns:
+        The final text response from the model, or None if function calls are needed.
+    
+    Raises:
+        Exception: If function call results are empty or malformed.
+    """
     response = client.models.generate_content(
         model="gemini-2.0-flash-001",
         contents=messages,

@@ -5,7 +5,17 @@ from google.genai import types
 from config import MAX_CHARS
 
 
-def get_file_content(working_directory, file_path):
+def get_file_content(working_directory: str, file_path: str) -> str:
+    """Read and return the contents of a file, with security checks and truncation.
+    
+    Args:
+        working_directory: The base working directory path.
+        file_path: Relative path to the target file to read.
+    
+    Returns:
+        The file contents as a string, truncated to MAX_CHARS if necessary,
+        or an error message if the file cannot be read.
+    """
     absolute_working = os.path.abspath(working_directory)
     target_file = os.path.abspath(os.path.join(working_directory, file_path))
 

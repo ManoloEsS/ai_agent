@@ -3,7 +3,18 @@ import os
 from google.genai import types
 
 
-def write_file(working_directory, file_path, content):
+def write_file(working_directory: str, file_path: str, content: str) -> str:
+    """Write content to a file, creating it and parent directories if needed.
+    
+    Args:
+        working_directory: The base working directory path.
+        file_path: Relative path to the target file to write.
+        content: The content to write to the file.
+    
+    Returns:
+        A success message with the number of characters written,
+        or an error message if the write operation fails.
+    """
     absolute_working = os.path.abspath(working_directory)
     target_file = os.path.abspath(os.path.join(working_directory, file_path))
 
