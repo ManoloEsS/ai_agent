@@ -11,12 +11,12 @@ def run_python_file(
     working_directory: str, file_path: str, args: Optional[List[str]] = None
 ) -> str:
     """Execute a Python file with optional arguments and return its output.
-    
+
     Args:
         working_directory: The base working directory path.
         file_path: Relative path to the Python file to execute.
         args: Optional list of command-line arguments to pass to the Python file.
-    
+
     Returns:
         A string containing stdout, stderr, and exit code information,
         or an error message if execution fails.
