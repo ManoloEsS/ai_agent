@@ -17,7 +17,12 @@ An AI-powered coding agent that uses Google's Gemini API to interact with the cu
 git clone https://github.com/ManoloEsS/ai_agent.git
 cd ai_agent
 ```
-2. Install dependencies:
+2. Create a virtual environment and activate it
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+3. Install dependencies:
 ```bash
 pip install -e .
 ```
@@ -32,7 +37,7 @@ GEMINI_API_KEY=your-api-key-here
 
 ### Usage
 
-Run the AI agent with natural language commands (using uv):
+Run the AI agent with natural language commands:
 
 ```bash
 # After installing with pipx, you can run from anywhere
@@ -50,16 +55,6 @@ ai-agent "read the calculator.py file"
 
 # Enable verbose mode for detailed logging
 ai-agent --verbose "explain how the calculator works"
-```
-
-### Direct Calculator Usage
-
-You can also run the calculator directly:
-
-```bash
-cd calculator
-python3 main.py "3 + 5"
-python3 tests.py
 ```
 
 ## Project Structure

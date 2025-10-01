@@ -9,30 +9,27 @@ Requires-Dist: python-dotenv==1.1.0
 
 # AI Agent Project
 
-An AI-powered coding agent that uses Google's Gemini API to interact with a calculator application through natural language and function calling.
+An AI-powered coding agent that uses Google's Gemini API to interact with the current working directory (hardwired to /calculator inside the package when installed) through natural language and function calling.
 
 ## Quick Start
 
 ### Prerequisites
 - Python 3.11+
-- [pipx](https://pipx.pypa.io/) (recommended for global installation)
 - Google Gemini API key
 
 ### Installation
 
-#### Using pipx (recommended)
+#### Using pip (local development)
 
-1. Install pipx if you haven't already:
+1. Clone the repository:
 ```bash
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
+git clone https://github.com/ManoloEsS/ai_agent.git
+cd ai_agent
 ```
-
-2. Install the AI agent:
+2. Install dependencies:
 ```bash
-pipx install git+https://github.com/ManoloEsS/ai_agent.git
+pip install -e .
 ```
-
 3. Set up your API key:
 ```bash
 export GEMINI_API_KEY="your-api-key-here"
@@ -42,26 +39,9 @@ Or create a `.env` file in your working directory:
 GEMINI_API_KEY=your-api-key-here
 ```
 
-#### Alternative: Using pip (local development)
-
-If you prefer to use pip for local development:
-
-1. Clone the repository:
-```bash
-git clone https://github.com/ManoloEsS/ai_agent.git
-cd ai_agent
-```
-
-2. Install dependencies:
-```bash
-pip install -e .
-```
-
-3. Set up your API key as shown above.
-
 ### Usage
 
-Run the AI agent with natural language commands:
+Run the AI agent with natural language commands (using uv):
 
 ```bash
 # After installing with pipx, you can run from anywhere
@@ -119,7 +99,6 @@ For a comprehensive explanation of each function and their role in the program, 
 
 This detailed documentation includes:
 - Complete function descriptions and their responsibilities
-- Parameter explanations and return values
 - Security features and design patterns
 - Program flow and workflow examples
 - Usage examples and best practices
@@ -174,14 +153,6 @@ The agent includes multiple security layers:
 - File operations validate paths before execution
 - Script execution has a 30-second timeout
 - File reading is limited to 10,000 characters
-
-## Testing
-
-Run the calculator tests:
-```bash
-cd calculator
-python3 tests.py
-```
 
 ## License
 
