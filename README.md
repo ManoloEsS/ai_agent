@@ -1,6 +1,6 @@
 # AI Agent Project
 
-An AI-powered coding agent that uses Google's Gemini API to interact with the current working directory (hardwired to /calculator inside the package when installed) through natural language and function calling.
+An AI-powered coding agent that uses Google's Gemini API to interact with the current working directory (hardcoded to /calculator inside the package when installed) through natural language and function calling.
 
 ## Quick Start
 
@@ -19,7 +19,8 @@ cd ai_agent
 ```
 2. Create a virtual environment and activate it
 ```bash
-python -m venv .venv
+python -m venv .venv #linux
+py -m venv .venv #windows
 source .venv/bin/activate
 ```
 3. Install dependencies:
@@ -140,14 +141,5 @@ The agent includes multiple security layers:
 - Script execution has a 30-second timeout
 - File reading is limited to 10,000 characters
 
-## License
-
-This project is provided as-is for educational and demonstration purposes.
-
-## Contributing
-
-This is a demonstration project showing AI agent capabilities with function calling.
-
----
 
 For detailed technical documentation, see [FUNCTION_DOCUMENTATION.md](FUNCTION_DOCUMENTATION.md)
